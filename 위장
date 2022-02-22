@@ -1,0 +1,27 @@
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
+class Solution {
+    public int solution(String[][] clothes) {
+
+        int answer = 1;
+        Map<String, Integer> hash = new HashMap<>();
+
+        for (int i = 0; i < clothes.length; i++) {
+            String where = clothes[i][1];
+            if (hash.containsKey(where)) {
+                hash.put(where, hash.get(where) + 1);
+            } else {
+                hash.put(where,1);
+            }
+        }
+
+        Iterator<Map.Entry<String, Integer>> iter = hash.entrySet().iterator();
+        while(iter.hasNext()) {
+            answer *= iter.next().getValue()+1;
+        }
+
+        return answer-1;
+    }
+}
